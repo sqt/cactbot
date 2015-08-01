@@ -1,0 +1,8 @@
+.enemyList {
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+}
+.enemyEntry {
+    height: 31px;
+}
