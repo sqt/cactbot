@@ -9,7 +9,12 @@ namespace Cactbot
     {
         const int MaxLogLinesRetained = 2000;
         Queue<string> logLines = new Queue<string>();
+
+        FFXIVMemory memory = null;
+        
         List<Combatant> combatants = new List<Combatant>();
+        List<AggroEntry> aggros = new List<AggroEntry>();
+        List<EnmityEntry> enmities = new List<EnmityEntry>();
 
         public BrowserBindings()
         {
@@ -43,6 +48,70 @@ namespace Cactbot
             // Maybe the presence of additional loglines being read could
             // be the dirty flag here.
             combatants = FFXIVPluginHelper.GetCombatantList();
+        }
+
+        public List<AggroEntry> GetAggroList()
+        {
+            if (memory == null || memory.validateProcess() == false)
+                memory = new FFXIVMemory(FFXIVPluginHelper.GetFFXIVProcess);
+
+            if (memory == null || memory.validateProcess() == false)
+                return null;
+
+            return memory.GetAggroList();
+        }
+
+        public List<EnmityEntry> GetEnmityList()
+        {
+            if (memory == null || memory.validateProcess() == false)
+                memory = new FFXIVMemory(FFXIVPluginHelper.GetFFXIVProcess);
+
+            if (memory == null || memory.validateProcess() == false)
+                return null;
+
+            return memory.GetEnmityEntryList();
+        }
+
+        public void UpdateAggroList()
+        {
+            aggros = GetAggroList();
+        }
+
+        public void UpdateEnmityList()
+        {
+            enmities = GetEnmityList();
+        }
+
+        public int NumAggros()
+        {
+            if (aggros == null)
+                return 0;
+            return aggros.Count;
+        }
+
+        public AggroEntry GetAggro(int idx)
+        {
+            if (aggros == null)
+                return null;
+            if (idx < 0 || idx >= aggros.Count)
+                return null;
+            return aggros[idx];
+        }
+
+        public int NumEnmity()
+        {
+            if (enmities == null)
+                return 0;
+            return enmities.Count;
+        }
+
+        public EnmityEntry GetEnmity(int idx)
+        {
+            if (enmities == null)
+                return null;
+            if (idx < 0 || idx >= enmities.Count)
+                return null;
+            return enmities[idx];
         }
 
         public int NumCombatants()

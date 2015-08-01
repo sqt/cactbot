@@ -119,6 +119,8 @@
     <Compile Include="BrowserWindow.xaml.cs">
       <DependentUpon>BrowserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FFXIVMemory.cs" />
+    <Compile Include="FFXIVObject.cs" />
     <Compile Include="FFXIVPluginHelper.cs" />
     <Compile Include="GlobalHotKey.cs" />
     <Compile Include="SettingsTab.cs">
@@ -152,6 +154,8 @@
     <Content Include="html\cactbot.css" />
     <Content Include="html\debug\debug.css" />
     <Content Include="html\debug\debug.js" />
+    <Content Include="html\enemies\enemies.css" />
+    <Content Include="html\enemies\enemies.js" />
     <Content Include="html\fakeact.js" />
     <Content Include="html\hunts\huntlist.js" />
     <Content Include="html\hunts\hunts.css" />

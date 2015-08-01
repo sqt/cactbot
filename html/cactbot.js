@@ -216,6 +216,8 @@ function rafLoop() {
         return;
     }
     window.act.updateCombatants();
+    window.act.updateAggroList();
+    window.act.updateEnmityList();
 
     var currentTime = new Date();
     updateRegistrar.tick(currentTime);
